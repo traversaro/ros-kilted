@@ -1,5 +1,5 @@
 package:
-  name: ros-jazzy-octomap
+  name: ros-kilted-octomap
   version: "1.10.0"
 
 build:

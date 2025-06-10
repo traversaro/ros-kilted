@@ -13,7 +13,7 @@ set CXX=cl.exe
 :: https://learn.microsoft.com/en-us/cpp/build/reference/cl-environment-variables?view=msvc-170
 set CL=/DROS_BUILD_SHARED_LIBS=1 /DNOGDI=1
 
-set CATKIN_MAKE_ISOLATED=src\ros-jazzy-catkin\bin\catkin_make_isolated
+set CATKIN_MAKE_ISOLATED=src\ros-kilted-catkin\bin\catkin_make_isolated
 set CMAKE_PREFIX_PATH=%CMAKE_PREFIX_PATH:\=/%
 
 %PYTHON% %CATKIN_MAKE_ISOLATED% ^

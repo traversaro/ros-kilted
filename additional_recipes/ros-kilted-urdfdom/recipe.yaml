@@ -1,5 +1,5 @@
 package:
-  name: ros-jazzy-urdfdom
+  name: ros-kilted-urdfdom
   version: "4.0.1"
 
 build:

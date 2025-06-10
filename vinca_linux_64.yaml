@@ -1,4 +1,4 @@
-ros_distro: jazzy
+ros_distro: kilted
 
 # mapping for package keys
 conda_index:
@@ -8,7 +8,7 @@ conda_index:
 # Reminder for next full rebuild, the next build number should be 8
 build_number: 7
 
-mutex_package: ros2-distro-mutex 0.9.* jazzy_*
+mutex_package: ros2-distro-mutex 0.9.* kilted_*
 
 skip_all_deps: false
 
@@ -28,7 +28,7 @@ packages_remove_from_deps:
 
 skip_existing:
   # - output
-  - https://conda.anaconda.org/robostack-jazzy/
+  - https://conda.anaconda.org/robostack-kilted/
 
 packages_select_by_deps:
   - ament_cmake_core

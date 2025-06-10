@@ -5,7 +5,7 @@ set -eo pipefail
 
 CATKIN_BUILD_BINARY_PACKAGE="ON"
 
-if [ "${PKG_NAME}" == "ros-jazzy-catkin" ]; then
+if [ "${PKG_NAME}" == "ros-kilted-catkin" ]; then
     # create catkin cookie to make it is a catkin workspace
     touch $PREFIX/.catkin
     # keep the workspace activation scripts (e.g., local_setup.bat)
@@ -109,7 +109,7 @@ fi
 
 cmake --build . --config Release --target install
 
-if [ "${PKG_NAME}" == "ros-jazzy-catkin" ]; then
+if [ "${PKG_NAME}" == "ros-kilted-catkin" ]; then
     # Copy the [de]activate scripts to $PREFIX/etc/conda/[de]activate.d.
     # This will allow them to be run on environment activation.
     for CHANGE in "activate" "deactivate"
@@ -119,7 +119,7 @@ if [ "${PKG_NAME}" == "ros-jazzy-catkin" ]; then
     done
 fi
 
-if [ "${PKG_NAME}" == "ros-jazzy-environment" ]; then
+if [ "${PKG_NAME}" == "ros-kilted-environment" ]; then
    for SCRIPT in "1.ros_distro.sh" "1.ros_etc_dir.sh" "1.ros_package_path.sh" "1.ros_python_version.sh" "1.ros_version.sh"
    do
        mkdir -p "${PREFIX}/etc/conda/activate.d"
@@ -127,7 +127,7 @@ if [ "${PKG_NAME}" == "ros-jazzy-environment" ]; then
    done
 fi
 
-if [ "${PKG_NAME}" == "ros-jazzy-ros-workspace" ]; then
+if [ "${PKG_NAME}" == "ros-kilted-ros-workspace" ]; then
     # Copy the [de]activate scripts to $PREFIX/etc/conda/[de]activate.d.
     # This will allow them to be run on environment activation.
     for CHANGE in "activate" "deactivate"

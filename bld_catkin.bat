@@ -15,7 +15,7 @@ set CXX=cl.exe
 set CL=/DROS_BUILD_SHARED_LIBS=1 /DNOGDI=1
 
 set "CATKIN_BUILD_BINARY_PACKAGE_ARGS=-DCATKIN_BUILD_BINARY_PACKAGE=1"
-if "%PKG_NAME%" == "ros-jazzy-catkin" (
+if "%PKG_NAME%" == "ros-kilted-catkin" (
     :: create catkin cookie to make it is a catkin workspace
     type NUL > %LIBRARY_PREFIX%\.catkin
     :: keep the workspace activation scripts (e.g., local_setup.bat)
@@ -45,7 +45,7 @@ cmake ^
     %SRC_DIR%\%PKG_NAME%\src\work
 if errorlevel 1 exit 1
 
-if "%PKG_NAME%" == "ros-jazzy-eigenpy" (
+if "%PKG_NAME%" == "ros-kilted-eigenpy" (
     cmake --build . --config Release --target all --parallel 1
     if errorlevel 1 exit 1
 ) else (
@@ -61,7 +61,7 @@ if "%SKIP_TESTING%" == "OFF" (
 cmake --build . --config Release --target install
 if errorlevel 1 exit 1
 
-if "%PKG_NAME%" == "ros-jazzy-catkin" (
+if "%PKG_NAME%" == "ros-kilted-catkin" (
     :: Copy the [de]activate scripts to %PREFIX%\etc\conda\[de]activate.d.
     :: This will allow them to be run on environment activation.
     for %%F in (activate deactivate) DO (
@@ -70,7 +70,7 @@ if "%PKG_NAME%" == "ros-jazzy-catkin" (
     )
 )
 
-if "%PKG_NAME%" == "ros-jazzy-ros-workspace" (
+if "%PKG_NAME%" == "ros-kilted-ros-workspace" (
     :: Copy the [de]activate scripts to %PREFIX%\etc\conda\[de]activate.d.
     :: This will allow them to be run on environment activation.
     for %%F in (activate deactivate) DO (

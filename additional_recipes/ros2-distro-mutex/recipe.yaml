@@ -6,7 +6,7 @@ build:
   number: 0
   # Note: keep in sync with build number
   # Cannot be done automatically, see https://github.com/mamba-org/boa/issues/278
-  string: jazzy_0
+  string: kilted_0
 
 requirements:
   # NOTE:
@@ -42,11 +42,11 @@ requirements:
 
 
 about:
-  homepage: https://github.com/robostack/ros-jazzy
+  homepage: https://github.com/robostack/ros-kilted
   license: BSD-3-Clause
   summary: |
     The ROS2 distro mutex. To switch between ROS2 versions, you need to change the mutex.
-    E.g. mamba install ros2-distro-mutex=*=jazzy to switch to jazzy.
+    E.g. mamba install ros2-distro-mutex=*=kilted to switch to kilted.
 
 extra:
   recipe-maintainers:

@@ -5,7 +5,7 @@ setlocal
 set "PYTHONPATH=%LIBRARY_PREFIX%\lib\site-packages;%SP_DIR%"
 
 pushd %SRC_DIR%\%PKG_NAME%\src\work
-set "PKG_NAME_SHORT=%PKG_NAME:*ros-jazzy-=%"
+set "PKG_NAME_SHORT=%PKG_NAME:*ros-kilted-=%"
 set "PKG_NAME_SHORT=%PKG_NAME_SHORT:-=_%"
 
 :: If there is a setup.cfg that contains install-scripts then use pip to install

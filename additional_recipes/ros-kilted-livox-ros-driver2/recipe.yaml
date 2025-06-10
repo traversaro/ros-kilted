@@ -1,11 +1,11 @@
 package:
-  name: ros-jazzy-livox-ros-driver2
+  name: ros-kilted-livox-ros-driver2
   version: 1.2.4
 
 source:
   git: https://github.com/Livox-SDK/livox_ros_driver2.git
   tag: 1.2.4
-  target_directory: ros-jazzy-livox-ros-driver2/src/work
+  target_directory: ros-kilted-livox-ros-driver2/src/work
   patches:
     - add_package_xml.patch
     - fix_livox_interfaces.patch
@@ -80,18 +80,18 @@ requirements:
     - pcl
     - pip
     - python
-    - ros-jazzy-ament-cmake
-    - ros-jazzy-ament-cmake-auto
-    - ros-jazzy-ament-lint-auto
-    - ros-jazzy-ament-lint-common
-    - ros-jazzy-pcl-conversions
-    - ros-jazzy-rclcpp
-    - ros-jazzy-rclcpp-components
-    - ros-jazzy-ros-environment
-    - ros-jazzy-ros-workspace
-    - ros-jazzy-rosidl-default-generators
-    - ros-jazzy-sensor-msgs
-    - ros2-distro-mutex 0.8.* jazzy_*
+    - ros-kilted-ament-cmake
+    - ros-kilted-ament-cmake-auto
+    - ros-kilted-ament-lint-auto
+    - ros-kilted-ament-lint-common
+    - ros-kilted-pcl-conversions
+    - ros-kilted-rclcpp
+    - ros-kilted-rclcpp-components
+    - ros-kilted-ros-environment
+    - ros-kilted-ros-workspace
+    - ros-kilted-rosidl-default-generators
+    - ros-kilted-sensor-msgs
+    - ros2-distro-mutex 0.8.* kilted_*
     - vtk-base
     - if: linux
       then:
@@ -106,12 +106,12 @@ requirements:
     - libboost-devel
     - pcl
     - python
-    - ros-jazzy-pcl-conversions
-    - ros-jazzy-rclcpp
-    - ros-jazzy-rclcpp-components
-    - ros-jazzy-ros-workspace
-    - ros-jazzy-sensor-msgs
-    - ros2-distro-mutex 0.8.* jazzy_*
+    - ros-kilted-pcl-conversions
+    - ros-kilted-rclcpp
+    - ros-kilted-rclcpp-components
+    - ros-kilted-ros-workspace
+    - ros-kilted-sensor-msgs
+    - ros2-distro-mutex 0.8.* kilted_*
     - vtk-base
     - if: osx and x86_64
       then:
