@@ -42,7 +42,7 @@ jobs:
             git push "${remote_repo}" HEAD:buildbranch_linux --follow-tags --force
         fi
       env:
-        INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        INPUT_GITHUB_TOKEN: ${{ secrets.GHA_PAT }}
 
     # Generate recipes for osx
     - name: Reset repo
@@ -68,7 +68,7 @@ jobs:
             git push "${remote_repo}" HEAD:buildbranch_osx --follow-tags --force
         fi
       env:
-        INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        INPUT_GITHUB_TOKEN: ${{ secrets.GHA_PAT }}
 
     # Generate recipes for osx-arm64
     - name: Reset repo
@@ -94,7 +94,7 @@ jobs:
             git push "${remote_repo}" HEAD:buildbranch_osx_arm64 --follow-tags --force
         fi
       env:
-        INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        INPUT_GITHUB_TOKEN: ${{ secrets.GHA_PAT }}
 
     # Generate recipes for Windows
     - name: Reset repo
@@ -120,7 +120,7 @@ jobs:
             git push "${remote_repo}" HEAD:buildbranch_win --follow-tags --force
         fi
       env:
-        INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        INPUT_GITHUB_TOKEN: ${{ secrets.GHA_PAT }}
 
     # Generate recipes for Linux ARM64
     - name: Reset repo
@@ -146,7 +146,7 @@ jobs:
             git push "${remote_repo}" HEAD:buildbranch_linux_aarch64 --follow-tags --force
         fi
       env:
-        INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        INPUT_GITHUB_TOKEN: ${{ secrets.GHA_PAT }}
 
 on:
   push:
