@@ -243,3 +243,6 @@ autoware_utils_pcl:
   add_host: ["REQUIRE_OPENGL"]
 autoware_utils_debug:
   add_host: ["fmt"]
+rclpy:
+  add_host: ["typing_extensions"]
+  add_run: ["typing_extensions"]
