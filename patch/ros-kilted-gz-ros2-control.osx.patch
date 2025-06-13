@@ -73,7 +73,7 @@ index f99ece9..17d659c 100644
  
  
 -  RCLCPP_DEBUG(this->nh_->get_logger(), "n_dof_ %lu", this->dataPtr->n_dof_);
-+  RCLCPP_DEBUG(this->nh_->get_logger(), "n_dof_ %llu", this->dataPtr->n_dof_);
++  RCLCPP_DEBUG(this->nh_->get_logger(), "n_dof_ %zu", this->dataPtr->n_dof_);
  
    this->dataPtr->joints_.resize(this->dataPtr->n_dof_);
  
