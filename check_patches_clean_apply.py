@@ -56,13 +56,6 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Remove recipes_only_patch/ and exit",
     )
-    ap.add_argument(
-        "--jobs",
-        "-j",
-        type=int,
-        default=1,
-        help="Parallel jobs to pass to rattler-build (default: 1)",
-    )
     return ap.parse_args()
 
 
@@ -134,7 +127,7 @@ def prepare_patch_recipes() -> List[Path]:
     return recreated
 
 
-def run_rattler_build(jobs: int) -> None:
+def run_rattler_build() -> None:
     cmd = [
         "rattler-build",
         "build",
@@ -167,7 +160,7 @@ def main() -> None:
     print(f"✅  Prepared {len(recreated)} minimal recipe(s) in {PATCH_RECIPES_DIR}/")
 
     if not args.dry:
-        run_rattler_build(args.jobs)
+        run_rattler_build()
     else:
         print("💡  --dry given – rattler-build not executed.")
 
