@@ -148,7 +148,7 @@ moveit_visual_tools:
 force_torque_sensor_broadcaster:
   add_host: ["typeguard", "jinja2"]
 ros_gz_sim:
-  add_host: ["REQUIRE_OPENGL"]
+  add_host: ["REQUIRE_OPENGL", "ros-kilted-gz-sensors-vendor"]
 geometric_shapes:
   add_host: ["octomap"]
 ros_image_to_qimage:
