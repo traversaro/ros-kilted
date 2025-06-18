@@ -33,7 +33,7 @@ libcurl_vendor:
 intra_process_demo:
   add_host: ["REQUIRE_OPENGL"]
   # Depends on opencv with gui support, see https://github.com/ros2/demos/blob/8f361a1ece2daae54016959f3ea9ab2e7692ddbb/intra_process_demo/include/image_pipeline/image_view_node.hpp#L58
-  add_run: ["libopencv * *qt6*"]
+  add_run: ["${{ 'libopencv * *qt6*' if not (ppc64le or aarch64 or osx) }}"]
 rviz_ogre_vendor:
   add_host: ["zlib", "freeimage", "freetype", "assimp", "zziplib", "pugixml", "${{ 'libglu' if linux }}"]
   add_build: ["vcstool"]
@@ -60,7 +60,7 @@ ign_rviz_plugins:
 image_view:
   add_host: ["REQUIRE_OPENGL"]
   # Depends on opencv with gui support, see  https://github.com/ros-perception/image_pipeline/blob/746268fcfd21b389bc39ae60bb6345a53c838558/image_view/src/stereo_view_node.cpp#L253
-  add_run: ["libopencv * *qt6*"]
+  add_run: ["${{ 'libopencv * *qt6*' if not (ppc64le or aarch64 or osx) }}"]
 nao_lola:
   add_host: ["libboost-devel"]
 ros_ign_gazebo:
@@ -252,7 +252,7 @@ rclpy:
   add_run: ["typing_extensions"]
 image_tools:
   # Depends on opencv with gui support, see https://github.com/ros2/demos/blob/8f361a1ece2daae54016959f3ea9ab2e7692ddbb/image_tools/src/showimage.cpp#L190
-  add_run: ["libopencv * *qt6*"]
+  add_run: ["${{ 'libopencv * *qt6*' if not (ppc64le or aarch64 or osx) }}"]
 camera_calibration:
   # Depends on opencv with gui support, see https://github.com/ros-perception/image_pipeline/blob/746268fcfd21b389bc39ae60bb6345a53c838558/camera_calibration/src/camera_calibration/camera_calibrator.py#L286
-  add_run: ["libopencv * *qt6*"]
+  add_run: ["${{ 'libopencv * *qt6*' if not (ppc64le or aarch64 or osx) }}"]
