@@ -154,7 +154,7 @@ force_torque_sensor_broadcaster:
 ros_gz_sim:
   add_host: ["REQUIRE_OPENGL", "ros-kilted-gz-sensors-vendor"]
 geometric_shapes:
-  add_host: ["octomap"]
+  add_host: ["libboost-devel", "octomap"]
 ros_image_to_qimage:
   add_host: ["REQUIRE_OPENGL"]
 rqt_image_overlay:
