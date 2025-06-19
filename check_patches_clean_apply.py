@@ -142,29 +142,29 @@ def main() -> None:
     args = parse_args()
 
     if not RECIPES_DIR.is_dir():
-        print("❌  recipes/ folder not found – abort.")
-        return
+        print("recipes/ folder not found – abort.")
+        sys.exit(1)
 
     if args.clean:
         shutil.rmtree(PATCH_RECIPES_DIR, ignore_errors=True)
-        print("🧹  Removed recipes_only_patch/")
+        print(" Removed recipes_only_patch/")
         return
 
     if PATCH_RECIPES_DIR.exists():
-        print("♻️   Refreshing recipes_only_patch/ …")
+        print("Refreshing recipes_only_patch/ …")
         shutil.rmtree(PATCH_RECIPES_DIR)
 
     recreated = prepare_patch_recipes()
     if not recreated:
-        print("⚠️  No recipes with patches found – nothing to test.")
+        print("No recipes with patches found – nothing to test.")
         return
 
-    print(f"✅  Prepared {len(recreated)} minimal recipe(s) in {PATCH_RECIPES_DIR}/")
+    print(f"Prepared {len(recreated)} minimal recipe(s) in {PATCH_RECIPES_DIR}/")
 
     if not args.dry:
         run_rattler_build()
     else:
-        print("💡  --dry given – rattler-build not executed.")
+        print("--dry given – rattler-build not executed.")
 
 
 if __name__ == "__main__":
