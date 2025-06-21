@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 4ae1a98ad..541e5f5d3 100644
+index 4ae1a98ad..3a574800b 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -20,6 +20,10 @@ find_package(tf2 REQUIRED)
@@ -13,6 +13,22 @@ index 4ae1a98ad..541e5f5d3 100644
  nav2_package()
  
  if(MSVC)
+@@ -68,6 +72,7 @@ target_link_libraries(${library_name}_common PRIVATE
+ # Hybrid plugin
+ add_library(${library_name} SHARED
+   src/smac_planner_hybrid.cpp
++  src/node_hybrid.cpp
+ )
+ target_include_directories(${library_name}
+   PUBLIC
+@@ -126,6 +131,7 @@ target_link_libraries(${library_name}_2d PRIVATE
+ # Lattice plugin
+ add_library(${library_name}_lattice SHARED
+   src/smac_planner_lattice.cpp
++  src/node_lattice.cpp
+ )
+ target_include_directories(${library_name}_lattice
+   PUBLIC
 diff --git a/include/nav2_smac_planner/a_star.hpp b/include/nav2_smac_planner/a_star.hpp
 index 8b127960c..a5dbbc262 100644
 --- a/include/nav2_smac_planner/a_star.hpp
