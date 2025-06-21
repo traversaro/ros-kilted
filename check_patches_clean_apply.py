@@ -121,7 +121,10 @@ def prepare_patch_recipes() -> List[Path]:
         dest_recipe_file = dest_recipe_dir / "recipe.yaml"
 
         copy_patch_files(filtered, recipe_file.parent, dest_recipe_dir)
-        write_minimal_recipe(dest_recipe_file, pkg, filtered)
+        # append "-check-patches" to the package name in the dummy recipe
+        patched_pkg = dict(pkg)
+        patched_pkg["name"] = f"{patched_pkg['name']}-check-patches"
+        write_minimal_recipe(dest_recipe_file, patched_pkg, filtered)
         recreated.append(dest_recipe_file)
 
     return recreated
@@ -134,7 +137,7 @@ def run_rattler_build() -> None:
         "--recipe-dir",
         str(PATCH_RECIPES_DIR)
     ]
-    print("\n🔧  Running:", " ".join(cmd), "\n", flush=True)
+    print("\n  Running:", " ".join(cmd), "\n", flush=True)
     subprocess.run(cmd, check=True)
 
 
