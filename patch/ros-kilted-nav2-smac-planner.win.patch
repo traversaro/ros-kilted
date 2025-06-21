@@ -1,11 +1,3 @@
-commit d9067660a217d467ba3e2a065a8d26b419a81773
-Author: Silvio Traversaro <silvio@traversaro.it>
-Date:   Sat Jun 21 12:53:17 2025 +0200
-
-    Fix compilation of nav2_smac_planner on Windows
-
-    Signed-off-by: Silvio <silvio.traversaro@iit.it>
-
 diff --git a/CMakeLists.txt b/CMakeLists.txt
 index 4ae1a98ad..24317d4d6 100644
 --- a/CMakeLists.txt
@@ -36,9 +28,9 @@ index 4ae1a98ad..24317d4d6 100644
 +  "${CMAKE_CURRENT_BINARY_DIR}/include/${PROJECT_NAME}/${library_name}_common_visibility_control.hpp"
 +  DESTINATION include/${PROJECT_NAME}
 +)
-
+ 
  install(DIRECTORY lattice_primitives/sample_primitives DESTINATION share/${PROJECT_NAME})
-
+ 
 diff --git a/include/nav2_smac_planner/node_hybrid.hpp b/include/nav2_smac_planner/node_hybrid.hpp
 index ee3a4bf23..2585a581b 100644
 --- a/include/nav2_smac_planner/node_hybrid.hpp
@@ -50,10 +42,10 @@ index ee3a4bf23..2585a581b 100644
 +#include "nav2_smac_planner/nav2_smac_planner_common_visibility_control.hpp"
  #include "nav2_costmap_2d/costmap_2d_ros.hpp"
  #include "nav2_costmap_2d/inflation_layer.hpp"
-
+ 
 @@ -473,16 +474,16 @@ public:
    Coordinates pose;
-
+ 
    // Constants required across all nodes but don't want to allocate more than once
 -  static float travel_distance_cost;
 -  static HybridMotionTable motion_table;
@@ -64,7 +56,7 @@ index ee3a4bf23..2585a581b 100644
 -  static ObstacleHeuristicQueue obstacle_heuristic_queue;
 +  NAV2_SMAC_PLANNER_COMMON_EXPORT static LookupTable obstacle_heuristic_lookup_table;
 +  NAV2_SMAC_PLANNER_COMMON_EXPORT static ObstacleHeuristicQueue obstacle_heuristic_queue;
-
+ 
 -  static std::shared_ptr<nav2_costmap_2d::Costmap2DROS> costmap_ros;
 +  NAV2_SMAC_PLANNER_COMMON_EXPORT static std::shared_ptr<nav2_costmap_2d::Costmap2DROS> costmap_ros;
    // Dubin / Reeds-Shepp lookup and size for dereferencing
@@ -72,7 +64,7 @@ index ee3a4bf23..2585a581b 100644
 -  static float size_lookup;
 +  NAV2_SMAC_PLANNER_COMMON_EXPORT static LookupTable dist_heuristic_lookup_table;
 +  NAV2_SMAC_PLANNER_COMMON_EXPORT static float size_lookup;
-
+ 
  private:
    float _cell_cost;
 diff --git a/include/nav2_smac_planner/node_lattice.hpp b/include/nav2_smac_planner/node_lattice.hpp
@@ -84,11 +76,11 @@ index 824b43544..899ae11e4 100644
  #include "nav2_smac_planner/node_hybrid.hpp"
  #include "nav2_smac_planner/utils.hpp"
 +#include "nav2_smac_planner/nav2_smac_planner_common_visibility_control.hpp"
-
+ 
  namespace nav2_smac_planner
  {
 @@ -415,10 +416,10 @@ public:
-
+ 
    NodeLattice * parent;
    Coordinates pose;
 -  static LatticeMotionTable motion_table;
@@ -98,7 +90,7 @@ index 824b43544..899ae11e4 100644
 -  static float size_lookup;
 +  NAV2_SMAC_PLANNER_COMMON_EXPORT static LookupTable dist_heuristic_lookup_table;
 +  NAV2_SMAC_PLANNER_COMMON_EXPORT static float size_lookup;
-
+ 
  private:
    float _cell_cost;
 diff --git a/CMakeLists.txt b/CMakeLists.txt
@@ -108,13 +100,13 @@ index 4ae1a98ad..3a574800b 100644
 @@ -20,6 +20,10 @@ find_package(tf2 REQUIRED)
  find_package(tf2_ros REQUIRED)
  find_package(visualization_msgs REQUIRED)
-
+ 
 +find_package(ode REQUIRED)
 +list(REMOVE_ITEM OMPL_LIBRARIES "ode_double")
 +list(APPEND OMPL_LIBRARIES "ODE::ODE")
 +
  nav2_package()
-
+ 
  if(MSVC)
 diff --git a/include/nav2_smac_planner/a_star.hpp b/include/nav2_smac_planner/a_star.hpp
 index 8b127960c..a5dbbc262 100644
@@ -123,7 +115,7 @@ index 8b127960c..a5dbbc262 100644
 @@ -26,7 +26,6 @@
  #include "nav2_costmap_2d/costmap_2d.hpp"
  #include "nav2_core/planner_exceptions.hpp"
-
+ 
 -#include "nav2_smac_planner/thirdparty/robin_hood.h"
  #include "nav2_smac_planner/analytic_expansion.hpp"
  #include "nav2_smac_planner/node_2d.hpp"
