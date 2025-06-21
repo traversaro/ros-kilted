@@ -1,7 +1,18 @@
-diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 05b59e628..78a197a44 100644
---- a/CMakeLists.txt
-+++ b/CMakeLists.txt
+From 635fe06177bec0e8ebad4ba341689fbc09a60da2 Mon Sep 17 00:00:00 2001
+From: Silvio Traversaro <silvio@traversaro.it>
+Date: Sat, 21 Jun 2025 13:51:53 +0200
+Subject: [PATCH] ur_robot_driver: Fix compilation on Windows
+
+---
+ ur_robot_driver/CMakeLists.txt             | 9 ++++++---
+ ur_robot_driver/src/hardware_interface.cpp | 2 +-
+ ur_robot_driver/src/robot_state_helper.cpp | 2 +-
+ 3 files changed, 8 insertions(+), 5 deletions(-)
+
+diff --git a/ur_robot_driver/CMakeLists.txt b/ur_robot_driver/CMakeLists.txt
+index 1393b3b03..1a76a5cab 100644
+--- a/ur_robot_driver/CMakeLists.txt
++++ b/ur_robot_driver/CMakeLists.txt
 @@ -9,9 +9,12 @@ option(
    OFF
  )
@@ -18,24 +29,29 @@ index 05b59e628..78a197a44 100644
  
  if(NOT CMAKE_CONFIGURATION_TYPES AND NOT CMAKE_BUILD_TYPE)
    message("${PROJECT_NAME}: You did not request a specific build type: selecting 'RelWithDebInfo'.")
-
-diff --git a/src/hardware_interface.cpp b/src/hardware_interface.cpp
-index 216d7d462..b500aadc7 100644
---- a/src/hardware_interface.cpp
-+++ b/src/hardware_interface.cpp
-@@ -45,3 +45,4 @@
-+#include "ur_robot_driver/hardware_interface.hpp"
- #include "ur_client_library/exceptions.h"
- #include "ur_client_library/ur/tool_communication.h"
- #include "ur_client_library/ur/version_information.h"
-
-diff --git a/include/ur_robot_driver/hardware_interface.hpp b/include/ur_robot_driver/hardware_interface.hpp
-index 14bdd29ea..330e4161e 100644
---- a/include/ur_robot_driver/hardware_interface.hpp
-+++ b/include/ur_robot_driver/hardware_interface.hpp
-@@ -66,3 +66,5 @@
-+typedef unsigned int uint;
-+
- namespace ur_robot_driver
- {
- enum class PausingState
+diff --git a/ur_robot_driver/src/hardware_interface.cpp b/ur_robot_driver/src/hardware_interface.cpp
+index a31ed1f8d..3b4bfb609 100644
+--- a/ur_robot_driver/src/hardware_interface.cpp
++++ b/ur_robot_driver/src/hardware_interface.cpp
+@@ -181,7 +181,7 @@ std::vector<hardware_interface::StateInterface> URPositionHardwareInterface::exp
+       const std::vector<std::string> fts_names = {
+         "force.x", "force.y", "force.z", "torque.x", "torque.y", "torque.z"
+       };
+-      for (uint j = 0; j < 6; ++j) {
++      for (uint32_t j = 0; j < 6; ++j) {
+         state_interfaces.emplace_back(
+             hardware_interface::StateInterface(sensor.name, fts_names[j], &urcl_ft_sensor_measurements_[j]));
+       }
+diff --git a/ur_robot_driver/src/robot_state_helper.cpp b/ur_robot_driver/src/robot_state_helper.cpp
+index c422ae951..0a57ae75d 100755
+--- a/ur_robot_driver/src/robot_state_helper.cpp
++++ b/ur_robot_driver/src/robot_state_helper.cpp
+@@ -366,7 +366,7 @@ void RobotStateHelper::setModeExecute(const std::shared_ptr<RobotStateHelper::Se
+           result_->message = "Play program service not available on this robot.";
+         } else {
+           // The dashboard denies playing immediately after switching the mode to RUNNING
+-          sleep(1);
++          std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+           result_->success = safeDashboardTrigger(this->play_program_srv_);
+         }
+       }
