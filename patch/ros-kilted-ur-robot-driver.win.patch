@@ -72,3 +72,13 @@ index c422ae9..0a57ae7 100755
            result_->success = safeDashboardTrigger(this->play_program_srv_);
          }
        }
+
+diff --git a/ur_robot_driver/src/hardware_interface.cpp b/ur_robot_driver/src/hardware_interface.cpp
+index 216d7d462..b500aadc7 100644
+--- a/ur_robot_driver/src/hardware_interface.cpp
++++ b/ur_robot_driver/src/hardware_interface.cpp
+@@ -45,3 +45,4 @@
++#include "ur_robot_driver/hardware_interface.hpp"
+ #include "ur_client_library/exceptions.h"
+ #include "ur_client_library/ur/tool_communication.h"
+ #include "ur_client_library/ur/version_information.h"
