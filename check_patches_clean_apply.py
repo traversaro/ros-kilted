@@ -137,7 +137,7 @@ def run_rattler_build() -> None:
         "--recipe-dir",
         str(PATCH_RECIPES_DIR)
     ]
-    print("\n🔧  Running:", " ".join(cmd), "\n", flush=True)
+    print("\n  Running:", " ".join(cmd), "\n", flush=True)
     subprocess.run(cmd, check=True)
 
 
