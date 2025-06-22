@@ -131,8 +131,6 @@ packages_select_by_deps:
 
   - behaviortree_cpp
 
-  - ouster_ros
-
   # These packages are only built on Windows as they depend on Linux-specific API
   - if: linux
     then:
@@ -171,6 +169,8 @@ packages_select_by_deps:
       - rqt_tf_tree
       - rviz_satellite
       - odom_to_tf_ros2
+      # TODO on windows: cannot open pcl_io.lib
+      - ouster_ros
 
 patch_dir: patch
 rosdistro_snapshot: rosdistro_snapshot.yaml
