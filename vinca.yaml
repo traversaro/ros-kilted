@@ -131,7 +131,7 @@ packages_select_by_deps:
 
   - behaviortree_cpp
 
-  # These packages are only built on Windows as they depend on Linux-specific API
+  # These packages are only built on Linux as they depend on Linux-specific API
   - if: linux
     then:
       # Depends on socketcan
@@ -139,8 +139,8 @@ packages_select_by_deps:
       # Depends on v4l
       - usb_cam
 
-  # These packages are currently only build on Linux, but they currently only build on
-  # Linux as trying to build them in the past on macos or Windows resulted in errors
+  # These packages are currently only build on Linux,
+  # as trying to build them in the past on macos or Windows resulted in errors
   - if: linux
     then:
       - py_binding_tools
