@@ -9,6 +9,7 @@ livox_ros_driver2:
   # support packages that stores their package.xml under a different name. For any
   # other modification, regular patch files should be used.
   package_xml_name: package_ROS2.xml
+# TODO: remove autoware_utils and it's sub packages after they are released in kilted
 autoware_utils:
   tag: release/jazzy/autoware_utils/1.4.2-1
   url: https://github.com/ros2-gbp/autoware_utils-release.git
