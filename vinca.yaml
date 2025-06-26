@@ -130,6 +130,8 @@ packages_select_by_deps:
 
   - behaviortree_cpp
 
+  - gtsam
+
   # These packages are only built on Linux as they depend on Linux-specific API
   - if: linux
     then:
@@ -154,8 +156,6 @@ packages_select_by_deps:
       - moveit-py
       - moveit-ros-perception
       - moveit-ros-occupancy-map-monitor
-      # todo: switch to dummy vendored package that just depends on the conda-forge's gtsam, so it works also on Windows
-      - gtsam
       # TODO on windows: fix iconv link issue
       - ffmpeg_image_transport
       - apriltag_draw
