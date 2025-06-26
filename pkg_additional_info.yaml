@@ -1,0 +1,20 @@
+octomap:
+  generate_dummy_package_with_run_deps:
+    dep_name: octomap
+    max_pin: 'x.x'
+urdfdom_py:
+  generate_dummy_package_with_run_deps:
+    dep_name: urdfdom-py
+    max_pin: 'x.x'
+urdfdom_headers:
+  generate_dummy_package_with_run_deps:
+    dep_name: urdfdom_headers
+    max_pin: 'x.x'
+urdfdom:
+  generate_dummy_package_with_run_deps:
+    dep_name: urdfdom
+    max_pin: 'x.x'
+cartographer:
+  generate_dummy_package_with_run_deps:
+    dep_name: cartographer
+    max_pin: 'x.x'
