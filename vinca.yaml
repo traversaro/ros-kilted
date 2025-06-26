@@ -20,7 +20,6 @@ mutex_package:
     - libprotobuf 5.29.3.*
     - libxml2 2.13.*
     - vtk 9.4.2.*
-    - graphviz 12.*
 
 packages_skip_by_deps:
   - if: not linux
