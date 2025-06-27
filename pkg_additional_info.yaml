@@ -2,6 +2,10 @@ octomap:
   generate_dummy_package_with_run_deps:
     dep_name: octomap
     max_pin: 'x.x'
+ompl:
+  generate_dummy_package_with_run_deps:
+    dep_name: ompl
+    max_pin: 'x.x'
 urdfdom_py:
   generate_dummy_package_with_run_deps:
     dep_name: urdfdom-py
