@@ -1,0 +1,90 @@
+jobs:
+  stage_0_job_0:
+    name: autoware-utils-system autoware-utils-math autoware-utils-visualization autoware-utils-uuid
+      autoware-utils-rclcpp
+    runs-on: macos-13
+    strategy:
+      fail-fast: false
+    needs: []
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Build ros-kilted-autoware-utils-system ros-kilted-autoware-utils-math
+        ros-kilted-autoware-utils-visualization ros-kilted-autoware-utils-uuid ros-kilted-autoware-utils-rclcpp
+      env:
+        ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+        CURRENT_RECIPES: ros-kilted-autoware-utils-system ros-kilted-autoware-utils-math
+          ros-kilted-autoware-utils-visualization ros-kilted-autoware-utils-uuid ros-kilted-autoware-utils-rclcpp
+        BUILD_TARGET: osx-64
+      run: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_unix.sh --target $BUILD_TARGET
+  stage_0_job_1:
+    name: autoware-utils-logging autoware-utils-diagnostics
+    runs-on: macos-13
+    strategy:
+      fail-fast: false
+    needs: []
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Build ros-kilted-autoware-utils-logging ros-kilted-autoware-utils-diagnostics
+      env:
+        ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+        CURRENT_RECIPES: ros-kilted-autoware-utils-logging ros-kilted-autoware-utils-diagnostics
+        BUILD_TARGET: osx-64
+      run: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_unix.sh --target $BUILD_TARGET
+  stage_1_job_2:
+    name: autoware-utils-geometry autoware-utils-debug autoware-utils-tf autoware-utils-pcl
+    runs-on: macos-13
+    strategy:
+      fail-fast: false
+    needs:
+    - stage_0_job_0
+    - stage_0_job_1
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Build ros-kilted-autoware-utils-geometry ros-kilted-autoware-utils-debug
+        ros-kilted-autoware-utils-tf ros-kilted-autoware-utils-pcl
+      env:
+        ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+        CURRENT_RECIPES: ros-kilted-autoware-utils-geometry ros-kilted-autoware-utils-debug
+          ros-kilted-autoware-utils-tf ros-kilted-autoware-utils-pcl
+        BUILD_TARGET: osx-64
+      run: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_unix.sh --target $BUILD_TARGET
+  stage_2_job_3:
+    name: autoware-utils
+    runs-on: macos-13
+    strategy:
+      fail-fast: false
+    needs:
+    - stage_1_job_2
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Build ros-kilted-autoware-utils
+      env:
+        ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+        CURRENT_RECIPES: ros-kilted-autoware-utils
+        BUILD_TARGET: osx-64
+      run: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_unix.sh --target $BUILD_TARGET
+name: build_osx_64
+on:
+  push:
+    branches:
+    - buildbranch_osx
