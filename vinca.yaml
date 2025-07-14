@@ -68,7 +68,6 @@ packages_select_by_deps:
   - moveit-ros-trajectory-cache
   # Requested in https://www.linkedin.com/feed/update/urn:li:activity:7346559234177703938/
   - moveit-chomp-optimizer-adapter
-  - moveit-hybrid-planning
   - moveit-ros-control-interface
 
   - ros2_control
@@ -182,6 +181,8 @@ packages_select_by_deps:
       - odom_to_tf_ros2
       # TODO on windows: cannot open pcl_io.lib
       - ouster_ros
+      # Windows error: error C3861: '__builtin_unreachable': identifier not found 
+      - moveit-hybrid-planning
 
 patch_dir: patch
 rosdistro_snapshot: rosdistro_snapshot.yaml
